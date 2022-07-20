@@ -1,0 +1,35 @@
+<!DOCTYPE>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>回答確認画面</title>
+</head>
+
+<body>
+<h1>アンケート回答確認</h1>
+<form th:action="@{/complete}" method="post">
+    <div class="question1">
+        <p>好きな肉は？</p>
+        <span th:text="${like_meat}"></span>
+    </div>
+
+    <div class="question2">
+        <p>好きな野菜は？</p>
+        <span th:text="${like_veg}"></span>
+    </div>
+
+    <div class="question3">
+        <p>好きなアイドルは？</p>
+        <span th:text="${like_idol}"></span>
+    </div>
+
+    <div class="back_button">
+        <input type="submit" value="入力画面に戻る">
+    </div>
+
+    <div class="finish_button">
+        <input type="submit" value="入力完了">
+    </div>
+</form>
+</body>
+</html>

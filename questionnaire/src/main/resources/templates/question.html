@@ -1,0 +1,59 @@
+<!DOCTYPE>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>アンケート</title>
+    </head>
+
+    <body>
+        <h1>アンケート</h1>
+        <form th:action="@{/confirm}" method="post">
+            <div class="question1">
+                <p>好きな肉は？</p>
+                    <label>
+                        <input type="radio" name="like_meat" value="beef">牛
+                    </label>
+                    <label>
+                        <input type="radio" name="like_meat" value="horse">馬
+                    </label>
+                    <label>
+                        <input type="radio" name="like_meat" value="lamb">羊
+                    </label>
+                    <label>
+                        <input type="radio" name="like_meat" value="pork">豚
+                    </label>
+                    <label>
+                        <input type="radio" name="like_meat" value="chicken">鶏
+                    </label>
+            </div>
+
+            <div class="question2">
+                <p>好きな野菜は？</p>
+                <label>
+                    <input type="radio" name="like_veg" value="carrot">人参
+                </label>
+                <label>
+                    <input type="radio" name="like_veg" value="cabbage">キャベツ
+                </label>
+                <label>
+                    <input type="radio" name="like_veg" value="lettuce">レタス
+                </label>
+                <label>
+                    <input type="radio" name="like_veg" value="leek">ネギ
+                </label>
+                <label>
+                    <input type="radio" name="like_veg" value="parsley">パセリ
+                </label>
+            </div>
+
+            <div class="question3">
+                <p>好きなアイドルは？</p>
+                <input type="text" name="like_idol">
+            </div>
+
+            <div class="check_button">
+                <input type="submit" value="入力確認">
+            </div>
+        </form>
+    </body>
+</html>
