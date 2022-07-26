@@ -12,28 +12,31 @@ import java.util.UUID;
 public class QuestionController {
 
     record QueryAnswer(String id, String like_meat, String like_veg, String like_idol) {}
-    private List<QueryAnswer> queryAnswer = new ArrayList<>();
-
-    @RequestMapping("/question")
-    public String question() {
-
-        return "question";
-    }
+    private List<QueryAnswer> queryAnswerList = new ArrayList<>();
 
     @GetMapping("/question")
-    String confirm() {
+    String question() {
         return "question";
     }
 
     @PostMapping("/confirm")
-    public String question_submit(@RequestParam("like_meat") String like_meat,
+    public String confirm(@RequestParam("like_meat") String like_meat,
                                   @RequestParam("like_veg") String like_veg,
                                   @RequestParam("like_idol") String like_idol,
-                                  @ModelAttribute Model model) {
-        String id = UUID.randomUUID().toString().substring(0, 8);
-        QueryAnswer answer = new QueryAnswer(id, like_meat, like_veg, like_idol);
-        queryAnswer.add(answer);
-        model.addAttribute("query_answer", queryAnswer);
+                                  Model model) {
+        model.addAttribute("like_meat", like_meat);
+        model.addAttribute("like_veg", like_veg);
+        model.addAttribute("like_idol", like_idol);
         return "confirm";
+    }
+
+    @RequestMapping(value = "/question", params = "back", method = RequestMethod.POST)
+    public String back(){
+        return "question";
+    }
+
+    @RequestMapping(value = "/complete", params = "complete", method = RequestMethod.POST)
+    public String complete() {
+        return "complete";
     }
 }
