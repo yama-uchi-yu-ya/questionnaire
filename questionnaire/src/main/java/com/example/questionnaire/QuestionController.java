@@ -5,7 +5,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.xml.stream.events.DTD;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -22,12 +21,12 @@ public class QuestionController {
     record QueryAnswer(String id, String like_meat, String like_veg, String like_idol) {}
     private List<QueryAnswer> queryAnswerList = new ArrayList<>();
 
-    @GetMapping("/question")
+    @RequestMapping(value = "/question", method = RequestMethod.GET)
     String question() {
         return "question";
     }
 
-    @PostMapping("/confirm")
+    @RequestMapping(value = "/confirm", method = RequestMethod.POST)
     public String confirm(@RequestParam("like_meat") String like_meat,
                           @RequestParam("like_veg") String like_veg,
                           @RequestParam("like_idol") String like_idol,
