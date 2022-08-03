@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS answers (
     is_deleted tinyint ,
     create_date datetime not null ,
     update_date datetime ,
-    CONSTRAINT FOREIGN KEY (meat_id) REFERENCES meats(meat_id)
+    FOREIGN KEY(meat_id) REFERENCES meats(meat_id)
 );
 
 CREATE TABLE IF NOT EXISTS answervegetables (
@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS answervegetables (
     is_deleted tinyint ,
     create_date datetime not null ,
     update_date datetime ,
-    FOREIGN KEY (vegetable_id) REFERENCES vegetables(vegetable_id)
+    FOREIGN KEY (vegetable_id) REFERENCES vegetables(vegetable_id) ,
     FOREIGN KEY (answer_id) REFERENCES answers(answer_id)
 );
 
