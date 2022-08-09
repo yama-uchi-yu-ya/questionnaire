@@ -21,12 +21,12 @@ public class QueryAnswerDao {
         this.jdbcTemplate = jdbcTemplate;
     }
 
- public void add(QueryAnswer queryAnswer) {
-     SqlParameterSource param = new BeanPropertySqlParameterSource(queryAnswer);
-     SimpleJdbcInsert insert = new SimpleJdbcInsert(jdbcTemplate).withTableName("query_answer");
-     insert.execute(param);
- }
- public List<QueryAnswer> findAll() {
+    public void add(QueryAnswer queryAnswer) {
+        SqlParameterSource param = new BeanPropertySqlParameterSource(queryAnswer);
+        SimpleJdbcInsert insert = new SimpleJdbcInsert(jdbcTemplate).withTableName("query_answer");
+        insert.execute(param);
+    }
+    public List<QueryAnswer> findAll() {
         String query = "SELECT * FROM query_answer";
 
         List<Map<String, Object>> result = jdbcTemplate.queryForList(query);
@@ -39,5 +39,5 @@ public class QueryAnswerDao {
                 .toList();
 
         return queryAnswers;
- }
+    }
 }
