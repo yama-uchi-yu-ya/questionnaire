@@ -6,7 +6,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import org.thymeleaf.util.Validate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,17 +29,18 @@ public class QuestionController {
     }
 
     @RequestMapping(value = "/confirm", method = RequestMethod.POST)
-    public String confirm(@RequestParam("like_meat") Integer like_meat,
-                          @RequestParam("like_veg") Integer like_veg,
-                          @RequestParam("like_idol") String like_idol,
-                          Model model,
-                          @Validated ValidateQuestion validateQuestion, BindingResult bindingResult) {
+    public String confirm(@Validated
+                          @ModelAttribute QuestionAnswerModel questionAnswerModel,
+                          BindingResult bindingResult,
+                          Model model) {
         if (bindingResult.hasErrors()) {
-            return "question";
+            model.addAttribute("org.springframework.validation.BindingResult.questionAnswerModel", bindingResult);
+            model.addAttribute("questionAnswerModel", questionAnswerModel);
+            return "redirect:question";
         }
-        model.addAttribute("like_meat", like_meat);
-        model.addAttribute("like_veg", like_veg);
-        model.addAttribute("like_idol", like_idol);
+        model.addAttribute("like_meat", questionAnswerModel.getLike_meat());
+        model.addAttribute("like_veg", questionAnswerModel.getLike_veg());
+        model.addAttribute("like_idol", questionAnswerModel.getLike_idol());
         return "confirm";
     }
 

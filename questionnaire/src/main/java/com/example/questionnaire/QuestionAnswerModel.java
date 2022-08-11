@@ -1,19 +1,22 @@
 package com.example.questionnaire;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+import java.util.List;
 
-public class ValidateQuestion {
+public class QuestionAnswerModel {
 
-    @NotEmpty(message = "一つ選択してください")
+    @NotNull(message = "一つ選択してください")
     private Integer like_meat;
 
-    @NotBlank(message = "一つ以上選択してください")
-    private Integer like_veg;
+    @NotNull(message = "一つ以上選択してください")
+    private List<Integer> like_veg;
 
     @NotBlank(message = "何か入力してください")
-    @Pattern(regexp = "^[^ -~｡-ﾟ]+$")
+    @Size(min = 1, max = 64, message = "最大64文字までです")
+    @Pattern(regexp = "^[^ -~｡-ﾟ]+$", message = "全角文字のみで入力してくささい")
     private String like_idol;
 
     public Integer getLike_meat() {
@@ -24,11 +27,11 @@ public class ValidateQuestion {
         this.like_meat = like_meat;
     }
 
-    public Integer getLike_veg() {
+    public List<Integer> getLike_veg() {
         return this.like_veg;
     }
 
-    public void setLike_veg(Integer like_veg) {
+    public void setLike_veg(List like_veg) {
         this.like_veg = like_veg;
     }
 
