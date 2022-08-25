@@ -7,49 +7,52 @@
 
     <body>
         <h1>アンケート</h1>
-        <form th:action="@{/confirm}" method="post">
+        <form th:action="@{/confirm}" method="post" th:object="${questionAnswerModel}">
             <div class="question1">
                 <p>好きな肉は？</p>
                 <label>
-                    <input type="radio" name="like_meat" value="1">牛
+                    <input type="radio" th:field="*{like_meat}" value="1">牛
                 </label>
                 <label>
-                    <input type="radio" name="like_meat" value="2">馬
+                    <input type="radio" th:field="*{like_meat}" value="2">馬
                 </label>
                 <label>
-                    <input type="radio" name="like_meat" value="3">羊
+                    <input type="radio" th:field="*{like_meat}" value="3">羊
                 </label>
                 <label>
-                    <input type="radio" name="like_meat" value="4">豚
+                    <input type="radio" th:field="*{like_meat}" value="4">豚
                 </label>
                 <label>
-                    <input type="radio" name="like_meat" value="5">鶏
+                    <input type="radio" th:field="*{like_meat}" value="5">鶏
                 </label>
             </div>
+            <div style="color:red" th:if="${#fields.hasErrors('like_meat')}" th:errors="*{like_meat}"></div>
 
             <div class="question2">
                 <p>好きな野菜は？(複数回答可)</p>
                 <label>
-                    <input type="checkbox" name="like_veg" value="1">人参
+                    <input type="checkbox" th:field="*{like_veg}" value="1">人参
                 </label>
                 <label>
-                    <input type="checkbox" name="like_veg" value="2">キャベツ
+                    <input type="checkbox" th:field="*{like_veg}" value="2">キャベツ
                 </label>
                 <label>
-                    <input type="checkbox" name="like_veg" value="3">レタス
+                    <input type="checkbox" th:field="*{like_veg}" value="3">レタス
                 </label>
                 <label>
-                    <input type="checkbox" name="like_veg" value="4">ネギ
+                    <input type="checkbox" th:field="*{like_veg}" value="4">ネギ
                 </label>
                 <label>
-                    <input type="checkbox" name="like_veg" value="5">パセリ
+                    <input type="checkbox" th:field="*{like_veg}" value="5">パセリ
                 </label>
             </div>
+            <div style="color:red" th:if="${#fields.hasErrors('like_veg')}" th:errors="*{like_veg}"></div>
 
             <div class="question3">
                 <p>好きなアイドルは？</p>
-                <input type="text" name="like_idol">
+                <input type="text" th:field="*{like_idol}">
             </div>
+            <div style="color:red" th:if="${#fields.hasErrors('like_idol')}" th:errors="*{like_idol}"></div>
 
             <div class="check_button">
                 <input type="submit" value="入力確認">

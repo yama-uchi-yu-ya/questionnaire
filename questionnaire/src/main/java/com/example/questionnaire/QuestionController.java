@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,23 +25,25 @@ public class QuestionController {
     private List<QueryAnswer> queryAnswerList = new ArrayList<>();
 
     @RequestMapping(value = "/question", method = RequestMethod.GET)
-    String question() {
+    String question(Model model) {
+        if (!model.containsAttribute("questionAnswerModel")) {
+            model.addAttribute("questionAnswerModel", new QuestionAnswerModel());
+        }
         return "question";
     }
 
     @RequestMapping(value = "/confirm", method = RequestMethod.POST)
     public String confirm(@Validated
-                          @ModelAttribute QuestionAnswerModel questionAnswerModel,
+                          @ModelAttribute("questionAnswerModel") QuestionAnswerModel questionAnswerModel,
                           BindingResult bindingResult,
+                          RedirectAttributes redirectAttributes,
                           Model model) {
         if (bindingResult.hasErrors()) {
-            model.addAttribute("org.springframework.validation.BindingResult.questionAnswerModel", bindingResult);
-            model.addAttribute("questionAnswerModel", questionAnswerModel);
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.questionAnswerModel", bindingResult);
+            redirectAttributes.addFlashAttribute("questionAnswerModel", questionAnswerModel);
             return "redirect:question";
         }
-        model.addAttribute("like_meat", questionAnswerModel.getLike_meat());
-        model.addAttribute("like_veg", questionAnswerModel.getLike_veg());
-        model.addAttribute("like_idol", questionAnswerModel.getLike_idol());
+        model.addAttribute("questionAnswerModel", questionAnswerModel);
         return "confirm";
     }
 

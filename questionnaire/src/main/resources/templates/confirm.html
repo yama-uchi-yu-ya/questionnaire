@@ -7,23 +7,23 @@
 
     <body>
         <h1>アンケート回答確認</h1>
-        <form th:action="@{/complete}" method="post">
+        <form th:action="@{/complete}" method="post" th:object="${questionAnswerModel}">
             <div class="question1">
                 <p>好きな肉は？</p>
-                <span th:text="${like_meat}"></span>
-                <input type="hidden" name="like_meat" th:value="${like_meat}">
+                <span th:text="*{like_meat}"></span>
+                <input type="hidden" name="like_meat" th:value="*{like_meat}">
             </div>
 
             <div class="question2">
                 <p>好きな野菜は？</p>
-                <span th:text="${like_veg}"></span>
-                <input type="hidden" name="like_veg" th:value="${like_veg}">
+                <span th:text="*{like_veg}"></span>
+                <input type="hidden" name="like_veg" th:value="*{like_veg}">
             </div>
 
             <div class="question3">
                 <p>好きなアイドルは？</p>
-                <span th:text="${like_idol}"></span>
-                <input type="hidden" name="like_idol" th:value="${like_idol}">
+                <span th:text="*{like_idol}"></span>
+                <input type="hidden" name="like_idol" th:value="*{like_idol}">
             </div>
 
             <div class="back_button">

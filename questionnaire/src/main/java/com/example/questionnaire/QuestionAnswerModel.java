@@ -1,9 +1,6 @@
 package com.example.questionnaire;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.util.List;
 
 public class QuestionAnswerModel {
@@ -11,7 +8,7 @@ public class QuestionAnswerModel {
     @NotNull(message = "一つ選択してください")
     private Integer like_meat;
 
-    @NotNull(message = "一つ以上選択してください")
+    @NotEmpty(message = "一つ以上選択してください")
     private List<Integer> like_veg;
 
     @NotBlank(message = "何か入力してください")
