@@ -41,7 +41,7 @@ public class QuestionController {
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.questionAnswerModel", bindingResult);
             redirectAttributes.addFlashAttribute("questionAnswerModel", questionAnswerModel);
-            return "redirect:question";
+            return "question";
         }
         model.addAttribute("questionAnswerModel", questionAnswerModel);
         return "confirm";
