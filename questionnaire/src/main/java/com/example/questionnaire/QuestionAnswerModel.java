@@ -12,7 +12,7 @@ public class QuestionAnswerModel {
     private List<Integer> like_veg;
 
     @NotBlank(message = "何か入力してください")
-    @Size(min = 1, max = 64, message = "最大64文字までです")
+    @Size(max = 64, message = "最大64文字までです")
     @Pattern(regexp = "^[^ -~｡-ﾟ]+$", message = "全角文字のみで入力してくささい")
     private String like_idol;
 

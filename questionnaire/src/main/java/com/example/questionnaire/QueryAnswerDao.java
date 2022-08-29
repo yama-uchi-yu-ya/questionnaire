@@ -1,16 +1,11 @@
 package com.example.questionnaire;
 
-import com.example.questionnaire.QuestionController.QueryAnswer;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
-import org.springframework.jdbc.core.namedparam.SqlParameterSource;
-import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class QueryAnswerDao {
@@ -21,23 +16,31 @@ public class QueryAnswerDao {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public void add(QueryAnswer queryAnswer) {
-        SqlParameterSource param = new BeanPropertySqlParameterSource(queryAnswer);
-        SimpleJdbcInsert insert = new SimpleJdbcInsert(jdbcTemplate).withTableName("query_answer");
-        insert.execute(param);
-    }
-    public List<QueryAnswer> findAll() {
-        String query = "SELECT * FROM query_answer";
-
-        List<Map<String, Object>> result = jdbcTemplate.queryForList(query);
-        List<QueryAnswer>  queryAnswers = result.stream()
-                .map((Map<String, Object> row) -> new QueryAnswer(
-                        row.get("id").toString(),
-                        row.get("like_meat").toString(),
-                        row.get("like_veg").toString(),
-                        row.get("like_idol").toString()))
-                .toList();
-
-        return queryAnswers;
+    public void add(QuestionAnswerModel questionAnswerModel) {
+        // answerテーブルにインサート ?のところは後から補完する
+        jdbcTemplate.update("INSERT INTO answers (meat_id, idol_name, is_deleted, create_date, update_date) VALUES (?, ?, ?, ?, ?)",
+                questionAnswerModel.getLike_meat(),
+                questionAnswerModel.getLike_idol(),
+                false,
+                // 現在時刻取得
+                new Timestamp(System.currentTimeMillis()),
+                new Timestamp(System.currentTimeMillis())
+        );
+        // answersテーブルから最新のレコードのanswer_idを取得
+        Integer answer_id = jdbcTemplate.queryForObject("SELECT answer_id FROM answers ORDER BY answer_id DESC LIMIT 1", Integer.class);
+        // questionAnswerModelから好きな野菜リストを取得
+        List like_veg_list = questionAnswerModel.getLike_veg();
+        // 好きな野菜リストの中身をforEachで順に実行
+        like_veg_list.forEach(vegetable_id -> {
+            // answer_vegetablesテーブルにインサート ?のところは後から補完する
+            jdbcTemplate.update("INSERT INTO answer_vegetables (vegetable_id, answer_id, is_deleted, create_date, update_date) VALUES (?, ?, ?, ?, ?)",
+                    vegetable_id,
+                    // さっきanswersテーブルにインサートしたレコードのanswer_id
+                    answer_id,
+                    false,
+                    new Timestamp(System.currentTimeMillis()),
+                    new Timestamp(System.currentTimeMillis())
+            );
+        });
     }
 }

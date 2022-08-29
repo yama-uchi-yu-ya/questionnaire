@@ -17,7 +17,9 @@
             <div class="question2">
                 <p>好きな野菜は？</p>
                 <span th:text="*{like_veg}"></span>
-                <input type="hidden" name="like_veg" th:value="*{like_veg}">
+                <p th:each="element, status : *{like_veg}">
+                    <input type="hidden" name="like_veg" th:value="${element}">
+                </p>
             </div>
 
             <div class="question3">

@@ -21,9 +21,6 @@ public class QuestionController {
         this.dao = dao;
     }
 
-    record QueryAnswer(String id, String like_meat, String like_veg, String like_idol) {}
-    private List<QueryAnswer> queryAnswerList = new ArrayList<>();
-
     @RequestMapping(value = "/question", method = RequestMethod.GET)
     String question(Model model) {
         if (!model.containsAttribute("questionAnswerModel")) {
@@ -48,13 +45,12 @@ public class QuestionController {
     }
 
     @RequestMapping(value = "/complete", method = RequestMethod.POST)
-    String complete(@RequestParam("like_meat") String like_meat,
-                    @RequestParam("like_veg") String like_veg,
-                    @RequestParam("like_idol") String like_idol) {
-        String id = UUID.randomUUID().toString().substring(0, 8);
-        QueryAnswer queryAnswer = new QueryAnswer(id, like_meat, like_veg, like_idol);
-        dao.add(queryAnswer);
-
+    String complete(@Validated
+                    @ModelAttribute("questionAnswerModel") QuestionAnswerModel questionAnswerModel,
+                    BindingResult bindingResult,
+                    RedirectAttributes redirectAttributes,
+                    Model model) {
+        dao.add(questionAnswerModel);
         return "complete";
     }
 }
