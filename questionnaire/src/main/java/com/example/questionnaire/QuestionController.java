@@ -23,9 +23,7 @@ public class QuestionController {
 
     @RequestMapping(value = "/question", method = RequestMethod.GET)
     String question(Model model) {
-        if (!model.containsAttribute("questionAnswerModel")) {
-            model.addAttribute("questionAnswerModel", new QuestionAnswerModel());
-        }
+        model.addAttribute("questionAnswerModel", new QuestionAnswerModel());
         return "question";
     }
 
