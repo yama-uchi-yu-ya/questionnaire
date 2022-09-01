@@ -31,11 +31,8 @@ public class QuestionController {
     public String confirm(@Validated
                           @ModelAttribute("questionAnswerModel") QuestionAnswerModel questionAnswerModel,
                           BindingResult bindingResult,
-                          RedirectAttributes redirectAttributes,
                           Model model) {
         if (bindingResult.hasErrors()) {
-            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.questionAnswerModel", bindingResult);
-            redirectAttributes.addFlashAttribute("questionAnswerModel", questionAnswerModel);
             return "question";
         }
         model.addAttribute("questionAnswerModel", questionAnswerModel);
@@ -44,10 +41,7 @@ public class QuestionController {
 
     @RequestMapping(value = "/complete", method = RequestMethod.POST)
     String complete(@Validated
-                    @ModelAttribute("questionAnswerModel") QuestionAnswerModel questionAnswerModel,
-                    BindingResult bindingResult,
-                    RedirectAttributes redirectAttributes,
-                    Model model) {
+                    @ModelAttribute("questionAnswerModel") QuestionAnswerModel questionAnswerModel) {
         dao.add(questionAnswerModel);
         return "complete";
     }

@@ -1,7 +1,10 @@
 package com.example.questionnaire;
 
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
@@ -14,6 +17,24 @@ public class QueryAnswerDao {
     @Autowired
     QueryAnswerDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
+    }
+
+    public List<User> meat_list() {
+        String sql = ""
+                + "SELECT" + "meat_id" + "name" + "FROM" + "meats";
+        RowMapper<User> rowMapper = new BeanPropertyRowMapper<User>(User.class);
+        List<User> userList = jdbcTemplate.query(sql, rowMapper);
+
+        return userList;
+    }
+
+    public List<User> vegetable_list() {
+        String sql = ""
+                + "SELECT" + "vegetable_id" + "name" + "FROM" + "vegetables";
+        RowMapper<User> rowMapper = new BeanPropertyRowMapper<User>(User.class);
+        List<User> userList = jdbcTemplate.query(sql, rowMapper);
+
+        return userList;
     }
 
     public void add(QuestionAnswerModel questionAnswerModel) {
