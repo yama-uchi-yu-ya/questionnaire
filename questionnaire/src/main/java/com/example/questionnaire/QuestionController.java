@@ -5,12 +5,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class QuestionController {
@@ -22,8 +19,10 @@ public class QuestionController {
     }
 
     @RequestMapping(value = "/question", method = RequestMethod.GET)
-    String question(Model model) {
+    String question(Model model, Meat meat_id, Meat name) {
         model.addAttribute("questionAnswerModel", new QuestionAnswerModel());
+        model.addAttribute("meat_id_list", meat_id);
+        model.addAttribute("meat_id_list", name);
         return "question";
     }
 

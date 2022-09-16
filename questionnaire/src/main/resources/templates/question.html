@@ -11,12 +11,10 @@
             <div class="question1">
                 <p>好きな肉は？</p>
                 <th:block th:each="meat_id : ${meat_list}">
-                    <!--
                     <label>
-                        <input type="radio" th:field="*{like_meat}" th:value="${meat_id.meat_id}" th:name="*{meat_id.name}">
+                        <input type="radio" th:field="*{like_meat}" th:value="${meat_list.meat_id}" th:name="$z{meat_list.name}">
                     </label>
-                    -->
-                    <p th:text="${meat_id.meat_id}"></p>
+                    <p th:text="${meat_list.meat_id}"></p>
                 </th:block>
 
                 <!--

@@ -19,13 +19,13 @@ public class QueryAnswerDao {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public List<User> meat_list() {
+    public List<Meat> meat_list() {
         String sql = ""
                 + "SELECT" + "meat_id" + "name" + "FROM" + "meats";
-        RowMapper<User> rowMapper = new BeanPropertyRowMapper<User>(User.class);
-        List<User> userList = jdbcTemplate.query(sql, rowMapper);
+        RowMapper<Meat> rowMapper = new BeanPropertyRowMapper<Meat>(Meat.class);
+        List<Meat> meatList = jdbcTemplate.query(sql, rowMapper);
 
-        return userList;
+        return meatList;
     }
 
     public List<User> vegetable_list() {
