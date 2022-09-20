@@ -19,9 +19,13 @@ public class QueryAnswerDao {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public List<Meat> meat_list() {
+    public List<Meat> meatList() {
         String sql = ""
-                + "SELECT" + "meat_id" + "name" + "FROM" + "meats";
+                + "SELECT"
+                + " meat_id,"
+                + " name"
+                + " FROM"
+                + " meats";
         RowMapper<Meat> rowMapper = new BeanPropertyRowMapper<Meat>(Meat.class);
         List<Meat> meatList = jdbcTemplate.query(sql, rowMapper);
 

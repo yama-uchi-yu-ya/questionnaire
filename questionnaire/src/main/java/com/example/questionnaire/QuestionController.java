@@ -19,10 +19,9 @@ public class QuestionController {
     }
 
     @RequestMapping(value = "/question", method = RequestMethod.GET)
-    String question(Model model, Meat meat_id, Meat name) {
+    String question(Model model) {
         model.addAttribute("questionAnswerModel", new QuestionAnswerModel());
-        model.addAttribute("meat_id_list", meat_id);
-        model.addAttribute("meat_id_list", name);
+        model.addAttribute("meatList", dao.meatList());
         return "question";
     }
 

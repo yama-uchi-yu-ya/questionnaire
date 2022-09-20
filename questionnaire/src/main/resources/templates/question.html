@@ -10,11 +10,11 @@
         <form th:action="@{/confirm}" method="post" th:object="${questionAnswerModel}">
             <div class="question1">
                 <p>好きな肉は？</p>
-                <th:block th:each="meat_id : ${meat_list}">
+                <th:block th:each="meatList : ${meatList}" th:object="${meat}">
                     <label>
-                        <input type="radio" th:field="*{like_meat}" th:value="${meat_list.meat_id}" th:name="$z{meat_list.name}">
+                        <input type="radio" th:field="*{like_meat}" th:value="${meatList.meat_id}">
                     </label>
-                    <p th:text="${meat_list.meat_id}"></p>
+                    <p th:text="${meatList.name}"></p>
                 </th:block>
 
                 <!--
