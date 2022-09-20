@@ -22,6 +22,7 @@ public class QuestionController {
     String question(Model model) {
         model.addAttribute("questionAnswerModel", new QuestionAnswerModel());
         model.addAttribute("meatList", dao.meatList());
+        model.addAttribute("vegetableList", dao.vegetableList());
         return "question";
     }
 

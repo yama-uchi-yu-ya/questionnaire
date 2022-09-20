@@ -32,13 +32,17 @@ public class QueryAnswerDao {
         return meatList;
     }
 
-    public List<User> vegetable_list() {
+    public List<Vegetable> vegetableList() {
         String sql = ""
-                + "SELECT" + "vegetable_id" + "name" + "FROM" + "vegetables";
-        RowMapper<User> rowMapper = new BeanPropertyRowMapper<User>(User.class);
-        List<User> userList = jdbcTemplate.query(sql, rowMapper);
+                + "SELECT"
+                + " vegetable_id"
+                + " name"
+                + " FROM"
+                + " vegetables";
+        RowMapper<Vegetable> rowMapper = new BeanPropertyRowMapper<Vegetable>(Vegetable.class);
+        List<Vegetable> vegetableList = jdbcTemplate.query(sql, rowMapper);
 
-        return userList;
+        return vegetableList;
     }
 
     public void add(QuestionAnswerModel questionAnswerModel) {
