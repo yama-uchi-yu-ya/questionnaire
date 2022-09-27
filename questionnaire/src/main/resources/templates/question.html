@@ -25,23 +25,6 @@
                         <input type="checkbox" th:field="*{like_veg}" th:value="${vegetableList.getVegetableId}" th:text="${vegetableList.getName}">
                     </label>
                 </th:block>
-                <!--
-                <label>
-                    <input type="checkbox" th:field="*{like_veg}" value="1">人参
-                </label>
-                <label>
-                    <input type="checkbox" th:field="*{like_veg}" value="2">キャベツ
-                </label>
-                <label>
-                    <input type="checkbox" th:field="*{like_veg}" value="3">レタス
-                </label>
-                <label>
-                    <input type="checkbox" th:field="*{like_veg}" value="4">ネギ
-                </label>
-                <label>
-                    <input type="checkbox" th:field="*{like_veg}" value="5">パセリ
-                </label>
-                -->
             </div>
             <div style="color:red" th:if="${#fields.hasErrors('like_veg')}" th:errors="*{like_veg}"></div>
 

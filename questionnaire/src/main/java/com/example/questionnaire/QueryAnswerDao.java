@@ -35,7 +35,7 @@ public class QueryAnswerDao {
     public List<Vegetable> vegetableList() {
         String sql = ""
                 + "SELECT"
-                + " vegetable_id"
+                + " vegetable_id,"
                 + " name"
                 + " FROM"
                 + " vegetables";

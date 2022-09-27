@@ -10,7 +10,11 @@
         <form th:action="@{/complete}" method="post" th:object="${questionAnswerModel}">
             <div class="question1">
                 <p>好きな肉は？</p>
-                <span th:text="*{like_meat}"></span>
+                <th:block th:each="meatList : ${meatList}">
+                    <p th:if="${like_meat == meatList.getMeatId}">
+                        <span th:value="*{meatList.getMeatId}" th:text="*{meatList.getName}"></span>
+                    </p>
+                </th:block>
                 <input type="hidden" name="like_meat" th:value="*{like_meat}">
             </div>
 
