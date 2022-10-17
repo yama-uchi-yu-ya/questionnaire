@@ -11,8 +11,8 @@
             <div class="question1">
                 <p>好きな肉は？</p>
                 <th:block th:each="meatList : ${meatList}">
-                    <p th:if="${like_meat == meatList.getMeatId}">
-                        <span th:value="*{meatList.getMeatId}" th:text="*{meatList.getName}"></span>
+                    <p th:if="${questionAnswerModel.like_meat == meatList.getMeatId}">
+                        <span th:value="${meatList.getMeatId}" th:text="${meatList.getName}"></span>
                     </p>
                 </th:block>
                 <input type="hidden" name="like_meat" th:value="*{like_meat}">
@@ -20,10 +20,15 @@
 
             <div class="question2">
                 <p>好きな野菜は？</p>
-                <span th:text="*{like_veg}"></span>
-                <p th:each="element, status : *{like_veg}">
+                <th:block th:each="vegetableList : ${vegetableList}">
+                    <th:block th:each="choice_veg : *{like_veg}">
+                        <span th:if="${choice_veg == vegetableList.getVegetableId.toString()}" th:text="${vegetableList.getName}">
+                        </span>
+                    </th:block>
+                </th:block>
+                <th:block th:each="element, status : *{like_veg}">
                     <input type="hidden" name="like_veg" th:value="${element}">
-                </p>
+                </th:block>
             </div>
 
             <div class="question3">

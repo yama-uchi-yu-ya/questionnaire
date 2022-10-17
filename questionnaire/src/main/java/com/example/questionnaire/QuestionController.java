@@ -1,7 +1,5 @@
 package com.example.questionnaire;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,12 +31,12 @@ public class QuestionController {
                           @ModelAttribute("questionAnswerModel") QuestionAnswerModel questionAnswerModel,
                           BindingResult bindingResult,
                           Model model) {
-        if (bindingResult.hasErrors()) {
-            return "question";
-        }
         model.addAttribute("questionAnswerModel", questionAnswerModel);
         model.addAttribute("meatList", dao.meatList());
         model.addAttribute("vegetableList", dao.vegetableList());
+        if (bindingResult.hasErrors()) {
+            return "question";
+        }
         return "confirm";
     }
 
