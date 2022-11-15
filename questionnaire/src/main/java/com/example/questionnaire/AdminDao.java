@@ -1,32 +1,32 @@
 package com.example.questionnaire;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.zip.DataFormatException;
 
-@Service
 public class AdminDao {
-    private final JdbcTemplate jdbcTemplate;
 
     @Autowired
-    AdminDao(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
-    }
+    JdbcTemplate jdbcTemplate;
 
-    public List<Admin> adminList() {
+    public Admin findUser(String name) throws DataAccessException {
         String sql = ""
                 + "SELECT"
-                + " name,"
-                + " password"
+                + " name"
                 + " FROM"
-                + " admins";
-        RowMapper<Admin> rowMapper = new BeanPropertyRowMapper<Admin>(Admin.class);
-        List<Admin> adminList = jdbcTemplate.query(sql, rowMapper);
+                + " admins"
+                + " WHERE"
+                + " admin_id = ?";
 
-        return adminList;
+        RowMapper<Admin> rowMapper = new BeanPropertyRowMapper<Admin>(Admin.class);
+        Admin admin = jdbcTemplate.queryForObject(sql, rowMapper, name);
+
+        return admin;
     }
 }
+
+
