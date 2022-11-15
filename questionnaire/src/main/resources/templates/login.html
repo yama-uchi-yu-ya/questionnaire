@@ -13,13 +13,11 @@
                 <p>ID</p>
                 <input type="text" th:field="*{name}">
             </div>
-            <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
 
             <div class="password">
                 <p>パスワード</p>
                 <input type="password" th:field="*{password}">
             </div>
-            <div style="color:red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
 
             <div class="check_button">
                 <input type="submit" value="ログイン">

@@ -1,6 +1,7 @@
 package com.example.questionnaire;
 
 public class Admin {
+
     public String name;
     public String password;
 

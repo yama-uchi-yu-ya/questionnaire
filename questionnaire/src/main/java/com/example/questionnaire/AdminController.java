@@ -3,8 +3,6 @@ package com.example.questionnaire;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -25,20 +23,13 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/view", method = RequestMethod.POST)
-    String view(@Validated
-                @ModelAttribute("adminModel")AdminModel adminModel,
-                BindingResult bindingResult,
-                Model model) {
+    String view(@ModelAttribute("adminModel")AdminModel adminModel, Model model) {
         for (var admin_list : dao.adminList()) {
-            if (bindingResult.hasErrors()) {
-                return "view";
-            } else if (adminModel.getName() == admin_list.name &&
-                       adminModel.getPassword() == admin_list.password) {
-                return "view";
-            } else {
+            if (adminModel.getName().equals(admin_list.name) &&
+                adminModel.getPassword().equals(admin_list.password)) {
                 return "view";
             }
         }
-        return "view";
+        return "login";
     }
 }
