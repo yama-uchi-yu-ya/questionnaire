@@ -8,18 +8,18 @@
 
     <body>
         <h1>ログイン画面</h1>
-        <form th:action="@{/sign_in}" method="post" >
-            <div class="username">
+        <form th:action="@{/view}" method="post" th:object="${adminModel}">
+            <div class="name">
                 <p>ID</p>
-                <input type="text" name="username">
+                <input type="text" th:field="*{name}">
             </div>
 
             <div class="password">
                 <p>パスワード</p>
-                <input type="password" name="password">
+                <input type="password" th:field="*{password}">
             </div>
 
-            <div class="login_button">
+            <div class="check_button">
                 <input type="submit" value="ログイン">
             </div>
         </form>
