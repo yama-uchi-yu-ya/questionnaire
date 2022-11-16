@@ -1,10 +1,30 @@
 package com.example.questionnaire;
 
+import java.util.List;
+
 public class ViewAnswer {
 
     public int answer_id;
     public int meat_id;
     public String idol_name;
+
+
+
+
+
+    public List<Integer> vegetable_id;
+    public List<Integer> getVegetable_id() {
+        return this.vegetable_id;
+    }
+
+    public void setVegetable_id(List<Integer> vegetable_id) {
+        this.vegetable_id = vegetable_id;
+    }
+
+
+
+
+
 
     public int getAnswer_id() {
         return this.answer_id;
@@ -29,9 +49,10 @@ public class ViewAnswer {
     public ViewAnswer() {
     }
 
-    public ViewAnswer(int answer_id, int meat_id, String idol_name, int vegetable_id) {
+    public ViewAnswer(int answer_id, int meat_id, String idol_name, List<Integer> vegetable_id) {
         this.answer_id = answer_id;
         this.meat_id = meat_id;
         this.idol_name = idol_name;
+        this.vegetable_id = vegetable_id;
     }
 }

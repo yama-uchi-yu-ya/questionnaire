@@ -1,4 +1,6 @@
 package com.example.questionnaire;
 
-public class ViewAnswerRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ViewAnswerRepository extends JpaRepository<ViewAnswer, Integer> {
 }
