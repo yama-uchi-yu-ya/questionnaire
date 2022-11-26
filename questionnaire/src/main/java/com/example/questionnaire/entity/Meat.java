@@ -1,4 +1,4 @@
-package com.example.questionnaire;
+package com.example.questionnaire.entity;
 
 public class Meat {
     public int meat_id;

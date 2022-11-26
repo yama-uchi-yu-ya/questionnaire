@@ -1,4 +1,4 @@
-package com.example.questionnaire;
+package com.example.questionnaire.model;
 
 import javax.validation.constraints.*;
 import java.util.List;

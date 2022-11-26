@@ -1,5 +1,7 @@
-package com.example.questionnaire;
+package com.example.questionnaire.controller;
 
+import com.example.questionnaire.dao.QueryAnswerDao;
+import com.example.questionnaire.model.QuestionAnswerModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

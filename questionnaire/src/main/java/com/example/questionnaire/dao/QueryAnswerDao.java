@@ -1,5 +1,8 @@
-package com.example.questionnaire;
+package com.example.questionnaire.dao;
 
+import com.example.questionnaire.entity.Meat;
+import com.example.questionnaire.entity.Vegetable;
+import com.example.questionnaire.model.QuestionAnswerModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;

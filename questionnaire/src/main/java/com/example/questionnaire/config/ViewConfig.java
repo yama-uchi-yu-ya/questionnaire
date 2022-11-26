@@ -1,4 +1,4 @@
-package com.example.questionnaire;
+package com.example.questionnaire.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.PageRequest;

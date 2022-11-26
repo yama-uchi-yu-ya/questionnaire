@@ -1,12 +1,9 @@
-package com.example.questionnaire;
+package com.example.questionnaire.entity;
 
-import javax.validation.constraints.*;
+public class Admin {
 
-public class AdminModel {
-
-    private String name;
-
-    private String password;
+    public String name;
+    public String password;
 
     public String getName() {
         return this.name;
@@ -24,4 +21,11 @@ public class AdminModel {
         this.password = password;
     }
 
+    public Admin() {
+    }
+
+    public Admin(String name, String password) {
+        this.name = name;
+        this.password = password;
+    }
 }
